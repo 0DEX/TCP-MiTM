@@ -1,0 +1,8 @@
+{
+  "name": "TCP-MiTM",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:0DEX/TCP-MiTM.git",
+  "author": "Gerson Victor <gerson.vfs@gmail.com>",
+  "license": "MIT"
+}
