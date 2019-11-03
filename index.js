@@ -3,7 +3,7 @@ const net = require("net");
 const clients = [
   {
     address: "10.158.0.6",
-    port: 5000
+    port: 5001
   }
 ];
 
@@ -11,7 +11,7 @@ const server = net.createServer((socket) => {
 
   const client = new net.Socket();
 
-  client.connect(5000, "10.158.0.6", () => {
+  client.connect(5001, "10.158.0.6", () => {
     console.log("client connected!");
   });
 
@@ -37,6 +37,6 @@ const server = net.createServer((socket) => {
   throw err;
 });
 
-server.listen(5001, () => {
+server.listen(5000, () => {
   console.log("opened server on", server.address());
 });
