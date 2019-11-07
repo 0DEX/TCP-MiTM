@@ -9,36 +9,9 @@ open.then((conn) => {
   return conn.createChannel();
 }).then((ch) => {
   return ch.assertQueue(q).then((ok) => {
+    ch.sendToQueue(q, Buffer.from("##,imei:000000000000000,A;"));
+    ch.sendToQueue(q, Buffer.from("000000000000000;"));
     ch.sendToQueue(q, Buffer.from("imei:000000000000000,tracker,191107094108,,F,014108.00,A,0254.41073,S,04145.42314,W,,;"));
-    ch.sendToQueue(q, Buffer.from("imei:000000000000001,tracker,191107094108,,F,014108.00,A,0254.41073,S,04145.42314,W,,;"));
-    ch.sendToQueue(q, Buffer.from("imei:000000000000002,tracker,191107094108,,F,014108.00,A,0254.41073,S,04145.42314,W,,;"));
-
-    // ch.sendToQueue(q, Buffer.from("000000000000000;"));
-    // ch.sendToQueue(q, Buffer.from("##,imei:000000000000001,A;"));
-    // ch.sendToQueue(q, Buffer.from("imei:000000000000002,tracker,191107094108,,F,014108.00,A,0254.41073,S,04145.42314,W,,;"));
-  });
-}).catch(console.warn);
-
-// Consumer
-open.then((conn) => {
-  return conn.createChannel();
-}).then((ch) => {
-  return ch.assertQueue(q).then((ok) => {
-    return ch.consume(q, (msg) => {
-      if (msg !== null) {
-        const data = msg.content.toString();
-
-        const socket = new net.Socket();
-
-        socket.connect(5001, "35.198.22.223", () => {
-          console.log("Connected to the traccar server.");
-          console.log(data);
-          socket.write(data);
-        });
-
-        ch.ack(msg);
-      }
-    });
   });
 }).catch(console.warn);
 
