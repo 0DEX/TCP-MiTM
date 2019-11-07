@@ -40,5 +40,5 @@ open.then((conn) => {
       console.log("opened server on", server.port);
     });
   });
-}).catch(console.warn);
+});
 
