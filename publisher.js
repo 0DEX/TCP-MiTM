@@ -1,4 +1,4 @@
-const open = require("amqplib").connect("amqp://35.198.22.223");
+const open = require("amqplib").connect(process.env.AMQP_URI);
 
 const q = "tasks";
 

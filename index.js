@@ -1,5 +1,5 @@
 const net = require("net");
-const open = require("amqplib").connect("amqp://localhost");
+const open = require("amqplib").connect(process.env.AMQP_URI);
 
 // Publisher
 open.then((conn) => {
