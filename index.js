@@ -1,6 +1,8 @@
 const net = require("net");
 const open = require("amqplib").connect(process.env.AMQP_URI);
 
+const q = "tasks";
+
 // Publisher
 open.then((conn) => {
   return conn.createChannel();
