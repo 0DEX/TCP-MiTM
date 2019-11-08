@@ -8,7 +8,8 @@ open.then((conn) => {
   return conn.createChannel();
 }).then((ch) => {
   return ch.assertQueue(q).then((ok) => {
-    ch.sendToQueue(q, "data");
+    const data = "##,imei:000000000000000,A;";
+    ch.sendToQueue(q, Buffer.from(data));
   });
 });
 
@@ -28,7 +29,7 @@ const server = net.createServer((socket) => {
   socket.on("data", (data) => {
     console.log(data.toString());
     client.write(data);
-    
+
   });
 
   client.on("end", () => {
