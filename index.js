@@ -9,7 +9,7 @@ open.then((conn) => {
 }).then((ch) => {
   return ch.assertQueue(q).then((ok) => {
     const data = "##,imei:000000000000000,A;";
-    ch.sendToQueue(q, Buffer.from(data));
+    
 
     const server = net.createServer((socket) => {
       const client = new net.Socket();
@@ -26,7 +26,7 @@ open.then((conn) => {
       socket.on("data", (data) => {
         console.log(data.toString());
         client.write(data);
-
+        ch.sendToQueue(q, data);
       });
 
       client.on("end", () => {
