@@ -39,8 +39,8 @@ open.then((conn) => {
       throw err;
     });
 
-    server.listen(5000, () => {
-      console.log("Server running on port 5000.");
+    server.listen(process.env.APP_PORT, () => {
+      console.log(`Server running on port ${process.env.APP_PORT}.`);
     });
   });
 });
