@@ -13,6 +13,7 @@ services:
   proxy:
     build: .
     environment: 
+      - APP_PORT=5001
       - AMQP_URI=amqp://127.0.0.1/
       - TARGET_HOST=35.198.49.191
       - TARGET_PORT=5001
