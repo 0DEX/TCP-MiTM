@@ -7,14 +7,12 @@ const q = "tasks";
 open.then((conn) => {
   return conn.createChannel();
 }).then((ch) => {
-  return ch.assertQueue(q).then((ok) => {
-    const data = "##,imei:000000000000000,A;";
-    
+  return ch.assertQueue(q).then((ok) => { 
 
     const server = net.createServer((socket) => {
       const client = new net.Socket();
 
-      client.connect(5001, "10.158.0.6", () => {
+      client.connect(process.env.TARGET_PORT, process.env.TARGET_HOST, () => {
         console.log("client connected!");
       });
 
@@ -42,7 +40,7 @@ open.then((conn) => {
     });
 
     server.listen(5000, () => {
-      console.log("opened server on", server.port);
+      console.log("Server running on port 5000.");
     });
   });
 });

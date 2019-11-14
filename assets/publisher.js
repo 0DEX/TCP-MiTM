@@ -6,10 +6,8 @@ open.then((conn) => {
   return conn.createChannel();
 }).then((ch) => {
   return ch.assertQueue(q).then((ok) => {
-    setInterval(() => {
-      const data = "##,imei:000000000000000,A;";
-      ch.sendToQueue(q, Buffer.from(data));
-      console.log(data);
-    }, 1000);
+    const data = "##,imei:000000000000000,A;";
+    console.log(data);
+    ch.sendToQueue(q, Buffer.from(data));
   });
 });
