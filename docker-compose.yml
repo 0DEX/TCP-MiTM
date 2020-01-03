@@ -19,5 +19,5 @@ services:
       - TARGET_PORT=5001
     network_mode: "host"
     restart: always
-    depends_on:
-      - rabbitmq
+    # depends_on:
+      # - rabbitmq
