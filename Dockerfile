@@ -2,9 +2,12 @@ FROM node:alpine
 
 WORKDIR /app/
 
-ADD index.js .
+ADD src .
 ADD package.json .
+ADD tsconfig.json .
 
-RUN npm install
+RUN npm install && \
+    npm install -g typescript && \
+    tsc --build
 
-CMD [ "node", "."]
+CMD node dist/
