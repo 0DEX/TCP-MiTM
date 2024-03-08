@@ -74,7 +74,7 @@ export const connectToServer = (params: Server) => {
 
       client.on("end", () => {
         console.log(
-          `[disconnected]: (${client.remoteAddress}:${client.remotePort})`
+          `[disconnected]: (${socket.remoteAddress}:${socket.remotePort})`
         );
         socket.end();
       });
