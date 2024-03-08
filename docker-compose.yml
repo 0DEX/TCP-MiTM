@@ -1,23 +1,21 @@
-version: '3'
+version: '3.8'
 services:
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    network_mode: "host"
-    restart: always
-  # rabbitmq:
-    # image: rabbitmq:latest
-    # network_mode: "host"
-    # restart: always
   proxy:
     build: .
-    environment: 
-      - APP_PORT=5001
-      - AMQP_URI=amqp://127.0.0.1/
-      - TARGET_HOST=10.158.0.6
-      - TARGET_PORT=5001
-    network_mode: "host"
+    env_file:
+      - .env
     restart: always
-    # depends_on:
-      # - rabbitmq
+    ports:
+      - "6001:6001"
+      - "6023:6023"
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"

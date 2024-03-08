@@ -1,13 +1,20 @@
-FROM node:alpine
+FROM node:alpine as builder
 
 WORKDIR /app/
 
 ADD src .
 ADD package.json .
+ADD yarn.lock .
 ADD tsconfig.json .
 
-RUN npm install && \
-    npm install -g typescript && \
-    tsc --build
+RUN yarn install && \
+    yarn build
 
-CMD node dist/
+FROM node:alpine
+
+WORKDIR /app/
+
+COPY --from=builder /app/dist .
+COPY --from=builder /app/node_modules ./node_modules
+
+CMD ["node", "index.js"]
