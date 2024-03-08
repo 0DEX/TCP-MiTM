@@ -5,11 +5,19 @@
   "repository": "git@github.com:0DEX/TCP-MiTM.git",
   "author": "Gerson Victor <gerson.vfs@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
+
+  },
   "dependencies": {
-    "amqplib": "^0.5.5"
+    "amqplib": "^0.10.3",
+    "mongodb": "^6.4.0"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.5.13",
-    "@types/node": "^13.1.2"
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^20.11.24",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
   }
 }
